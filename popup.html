@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Memory and CPU Info</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 10px;
+    }
+    .info {
+      margin-bottom: 10px;
+    }
+  </style>
+  <script src="chart.js"></script>
+</head>
+<body>
+  <div class="info" id="usedMemory"></div>
+  <div class="info" id="totalMemory"></div>
+  <div class="info" id="maxHeap"></div>
+  <canvas id="memoryChart" width="400" height="200"></canvas>
+  <div class="info" id="cpuUsage"></div>
+  <canvas id="cpuChart" width="400" height="200"></canvas>
+  <div class="info" id="domNodeCount"></div>
+  <canvas id="domNodeCountChart" width="400" height="200"></canvas>
+  <script src="popup.js"></script>
+</body>
+</html>
