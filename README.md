@@ -1,5 +1,5 @@
 # RCM
-Live Profiling tool for CPU &amp; RAM consumption on web platform.
+Live CPU and RAM Profiling tool on web platform.
 
 RCM Live Monitoring tool (Chrome Extension) :
 
