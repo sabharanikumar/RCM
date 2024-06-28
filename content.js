@@ -1,27 +1,29 @@
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-  if (request.action === 'getInfo') {
-    const memoryInfo = {
-      //RAM memory
-      usedMemory: window.performance.memory.usedJSHeapSize,
-      totalMemory: window.performance.memory.totalJSHeapSize,
-      heaplimit: window.performance.memory.jsHeapSizeLimit
-    };
+    if (request.action === 'getInfo') {
+        const memInfo = (function() {
+            const mem = window.performance.memory;
+            return {
+                uM: mem.usedJSHeapSize,
+                tM: mem.totalJSHeapSize,
+                hL: mem.jsHeapSizeLimit
+            };
+        })();
 
-    //Dom logic
-    const domNodeCount = document.getElementsByTagName('*').length;
+        const dCount = (function() {
+            return document.getElementsByTagName('*').length;
+        })();
 
-    //CPU logic
+        const cpuUtilization = (function() {
+            const tStart = performance.now();
+            let s = 0;
+            for (let i = 0; i < 1e6; i++) {
+                s += Math.random();
+            }
+            const tEnd = performance.now();
+            const execTime = tEnd - tStart;
+            return (execTime / 1500) * 100;
+        })();
 
-    const start = performance.now();
-    let sum = 0;
-    for (let i = 0; i < 1000000; i++) {
-        sum += Math.random();
+        sendResponse({ memoryInfo: memInfo, cpuUsage: cpuUtilization, domNodeCount: dCount });
     }
-    const end = performance.now();
-    const executionTime = end - start;
-
-    const cpuUsage = (executionTime / 1500) * 100; 
-
-    sendResponse({ memoryInfo, cpuUsage, domNodeCount });
-  }
 });
