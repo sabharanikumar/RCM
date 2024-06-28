@@ -1,4 +1,3 @@
-// Initialize empty arrays to store chart data
 let labels = [];
 let usedMemoryData = [];
 let cpuUsageData = [];
